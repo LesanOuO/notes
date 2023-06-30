@@ -1,5 +1,5 @@
 ---
-title: "Java中Lambda表达式使用"
+title: "Java中Lambda表达式学习"
 date: 2022-12-03T11:36:22+08:00
 draft: false
 tags: ['Java']

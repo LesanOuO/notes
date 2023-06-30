@@ -1,5 +1,5 @@
 ---
-title: "Java中Function接口使用"
+title: "Java中Function接口学习"
 date: 2022-12-02T20:34:55+08:00
 draft: false
 tags: ['Java']
