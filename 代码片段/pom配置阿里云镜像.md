@@ -1,12 +1,26 @@
 ```xml
 <repositories>
 	<repository>
-		<id>aliyun</id>
-		<name>aliyun Repository</name>
-		<url>https://maven.aliyun.com/repository/public</url>
+		<id>public</id>
+		<name>aliyun nexus</name>
+		<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		<releases>
+			<enabled>true</enabled>
+		</releases>
+	</repository>
+</repositories>
+
+<pluginRepositories>
+	<pluginRepository>
+		<id>public</id>
+		<name>aliyun nexus</name>
+		<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		<releases>
+			<enabled>true</enabled>
+		</releases>
 		<snapshots>
 			<enabled>false</enabled>
 		</snapshots>
-	</repository>
-</repositories>
+	</pluginRepository>
+</pluginRepositories>
 ```
