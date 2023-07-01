@@ -60,6 +60,7 @@ public class DelayJobService<T> {
 ```
 
 ## 4. 创建线程
+方式一：
 ```java
 @Slf4j
 @Component
@@ -86,6 +87,36 @@ public class DelayJobThread {
             }
         }).start();
     }
+}
+```
+
+方式二：
+```java
+@Slf4j
+@Component
+public class DelayJobRunner implements CommandLineRunner { // 程序启动后执行的功能
+    @Autowired
+    private DelayJobService<DelayJobDto> synthesisResultConsumer;
+
+    @Autowired
+    private RBlockingDeque<DelayJobDto> blockingDeque;
+
+	@Override
+	public void run(String... args) {
+		new Thread(()->{
+            while (true) {
+                try {
+                    log.info("延时队列的数量：{}", blockingDeque.size());
+                    log.info("listen 本次监听时间：{}", DateUtil.formatDate(new Date()));
+                    DelayJobDto dto = blockingDeque.take(); //到期时自动取出
+                    log.info("listen 从队列中获取需要查询结果的延时任务信息：{}", JSON.toJSONString(dto));
+                    synthesisResultConsumer.expire(dto);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+	}
 }
 ```
 
